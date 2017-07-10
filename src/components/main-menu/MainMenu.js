@@ -45,5 +45,9 @@ export default {
       componentHandler.upgradeAllRegistered();
     });
   },
-  methods: { }
+  methods: {
+    signOut() {
+      this.$store.dispatch('Auth_signOut');
+    }
+  }
 };

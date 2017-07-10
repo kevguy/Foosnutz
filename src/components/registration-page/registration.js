@@ -11,35 +11,39 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getToken: 'MAIN_getToken'
+      getToken: 'Auth_getToken'
     })
   },
   methods: {
     submit() {
-      let url = 'http://localhost:8081/register';
-      fetch(url, {
-        mode: 'cors-with-forced-preflight',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        method: 'POST',
-        body:  JSON.stringify({
-          email: this.email,
-          password: this.password
-        })
-      })
-      .then((res) => {
-        return res.text();
-      })
-      .then(function (data) {
-        console.log('Request succeeded with JSON response', data);
-        return JSON.parse(data);
-      })
-      .catch(function (error) {
-        console.log('Request failed', error);
-      })
-      .then((data) => this.$store.dispatch('Auth_updateToken', data.token));
-      console.log('omg');
+      // let url = 'http://localhost:8081/register';
+      // fetch(url, {
+      //   mode: 'cors-with-forced-preflight',
+      //   headers: {
+      //     'Content-type': 'application/json'
+      //   },
+      //   method: 'POST',
+      //   body:  JSON.stringify({
+      //     email: this.email,
+      //     password: this.password
+      //   })
+      // })
+      // .then((res) => {
+      //   return res.text();
+      // })
+      // .then(function (data) {
+      //   console.log('Request succeeded with JSON response', data);
+      //   return JSON.parse(data);
+      // })
+      // .catch(function (error) {
+      //   console.log('Request failed', error);
+      // })
+      // .then((data) => this.$store.dispatch('Auth_updateToken', data.token));
+      // console.log('omg');
+      this.$store.dispatch('Auth_register', {
+        email: this.email,
+        password: this.password
+      });
     }
   }
 };

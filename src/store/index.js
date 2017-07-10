@@ -3,6 +3,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Auth from './authentication/auth';
 
+const prefix = 'Main_';
+
 Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
@@ -12,6 +14,9 @@ export default new Vuex.Store({
     dummy: 0
   },
   getters: {
+    [`${prefix}getBackendBaseUrl`]() {
+      return 'http://localhost:8081/';
+    },
     queryCurrentSearchUrl(state, getters) {
       return state + getters;
     }
