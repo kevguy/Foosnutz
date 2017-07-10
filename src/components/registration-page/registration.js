@@ -18,7 +18,8 @@ export default {
         },
         method: 'POST',
         body:  JSON.stringify({
-          fuck: 'fuck'
+          email: this.email,
+          password: this.password
         })
       })
       .then((res) => {
