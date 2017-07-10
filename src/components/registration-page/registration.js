@@ -1,4 +1,5 @@
-console.log('fuck');
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'registration',
   data() {
@@ -7,6 +8,11 @@ export default {
       email: '',
       password: ''
     };
+  },
+  computed: {
+    ...mapGetters({
+      getToken: 'MAIN_getToken'
+    })
   },
   methods: {
     submit() {
@@ -27,10 +33,12 @@ export default {
       })
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        return JSON.parse(data);
       })
       .catch(function (error) {
         console.log('Request failed', error);
-      });
+      })
+      .then((data) => this.$store.dispatch('Auth_updateToken', data.token));
       console.log('omg');
     }
   }
