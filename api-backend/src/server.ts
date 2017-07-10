@@ -36,7 +36,7 @@ app.post('/register', (req: Request, res: Response) => {
 
   const payload = {
     iss: req.hostname, // issuer
-    sub: user._id // subject
+    sub: newUser.id // subject
   }
   const token = jwt.encode(payload, "shhh..");
 
@@ -48,6 +48,31 @@ app.post('/register', (req: Request, res: Response) => {
       });
   });
 });
+
+app.get('/profile', (req: Request, res: Response) => {
+  const jobs:Array<string> = [
+    'Cook',
+    'SuperHero',
+    'Unicorn Wisperer',
+    'Toast Inspector'
+  ];
+  console.log(req.headers);
+  if (!req.headers.authorization) {
+    return res.status(401).send({
+      message: 'You are not authorized'
+    });
+  }
+  let token = (<string>req.headers.authorization).split(' ')[1];
+  let payload = jwt.decode(token, "shhh..");
+
+  if (!payload.sub) {
+    res.status(401).send({
+      message: 'Authentication failed'
+    })
+  }
+
+  res.json(jobs);
+})
 
 app.set("port", process.env.PORT || 8081);
 const server = app.listen(app.get('port'), () => {

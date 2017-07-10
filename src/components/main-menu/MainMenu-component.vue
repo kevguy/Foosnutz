@@ -53,7 +53,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
         for="mhb-profile">
-      <li class="mdl-menu__item">Dashboard</li>
+      <li class="mdl-menu__item" v-on:click="getProfile()">Dashboard</li>
       <li class="mdl-menu__item">Settings</li>
       <li class="mdl-menu__item" v-on:click="signOut()">Sign Out</li>
     </ul>

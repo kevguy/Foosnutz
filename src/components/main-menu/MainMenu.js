@@ -48,6 +48,9 @@ export default {
   methods: {
     signOut() {
       this.$store.dispatch('Auth_signOut');
+    },
+    getProfile() {
+      this.$store.dispatch('Profile_getProfile');
     }
   }
 };

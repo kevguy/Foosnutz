@@ -2,13 +2,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Auth from './authentication/auth';
+import Profile from './profile/profile';
 
 const prefix = 'Main_';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
-    Auth
+    Auth,
+    Profile
   },
   state: {
     dummy: 0
